@@ -21,9 +21,9 @@ class Dates(commands.Cog):
     async def current_time(self):
         ...
         now = datetime.datetime.now()
-        channel = self.bot.get_channel(958393680014766110)
+        channel = self.bot.get_channel(958102205641138206)
 
-      . # Apaga a agenda de Segunda, Quinta e Sabado após as 18
+       # Apaga a agenda de Segunda, Quinta e Sabado após as 18
         if(now.hour == 18 and now.minute < 30 
            and (now.weekday() == 4 or now.weekday() == 6 or now.weekday() == 0)):
             self.erase_schedules()
