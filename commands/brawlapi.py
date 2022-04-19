@@ -6,7 +6,7 @@ from discord.ext import commands
 
     def __init__(self, bot):
         self.bot = bot
-
+  
     @commands.command(
         name="membros", help="Lista membros do clube"
     )
@@ -15,20 +15,18 @@ from discord.ext import commands
           my_secret = os.environ['BRAWLAPI_TOKEN']
           head = {'Authorization': 'Bearer {}'.format(my_secret)}
           
-          response = requests.get(
-                f"https://api.brawlstars.com/v1/clubs/%23GCVJC92P/members",headers=head
-          )
+          response = requests.get(f"https://api.brawlstars.com/v1/clubs/%23GCVJC92P/members",headers=head)
 
           print(response)
           data = response.json()
+          print('\nData\n')
+          print(data)
           members = data.get("items")
-          print("\n\n\nMembros\n")
-          print(members)
           members_str = ""
           for member in members:
-            members_str += member["name"] + "\n"
+            members_str += member["name"] + ' | '
 
-          await ctx.send(f"Membros:\n{members_str}")
+          await ctx.send(f"Membros: {len(members)}\n| {members_str}")
          
         except Exception as error:
             await ctx.send("Ops... Deu algum erro!")
